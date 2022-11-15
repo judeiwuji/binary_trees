@@ -57,11 +57,8 @@ binary_tree_t *lowest_common_ancestor(binary_tree_t *node,
 binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 									 const binary_tree_t *second)
 {
-	const binary_tree_t *tree;
-
-	if (first == NULL && second == NULL)
+	if (first == NULL || second == NULL)
 		return (NULL);
 
-	tree = first != NULL ? first : second;
-	return (lowest_common_ancestor(tree_root(tree), first, second));
+	return (lowest_common_ancestor(tree_root(first), first, second));
 }
