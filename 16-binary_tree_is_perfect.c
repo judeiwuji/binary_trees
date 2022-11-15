@@ -1,64 +1,36 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_height - measures the height of a binary tree
+ * tree_depth - Returns the depth of the tree
  *
- * @tree: a pointer to the root node of the tree to measure the height
- * Return: (size_t)
- */
-size_t binary_tree_height(const binary_tree_t *tree)
-{
-	size_t leftHeight = 0;
-	size_t rightHeight = 0;
-	size_t maxHeight;
-
-	if (tree == NULL)
-		return (0);
-
-	leftHeight = binary_tree_height(tree->left);
-	rightHeight = binary_tree_height(tree->right);
-	maxHeight = leftHeight > rightHeight ? leftHeight : rightHeight;
-	return (maxHeight + 1);
-}
-
-/**
- * binary_tree_balance - measures the balance factor of a binary tree
- *
- * @tree: a pointer to the root node of the tree to measure the balance factor
+ * @tree: A pointer to the root of the tree to be checked
  * Return: (int)
  */
-int binary_tree_balance(const binary_tree_t *tree)
+int tree_depth(const binary_tree_t *tree)
 {
-	int leftHeight;
-	int rightHeight;
-
 	if (tree == NULL)
 		return (0);
-
-	leftHeight = binary_tree_height(tree->left);
-	rightHeight = binary_tree_height(tree->right);
-
-	return (leftHeight - rightHeight);
+	return (tree_depth(tree->left) + 1);
 }
 
 /**
- * binary_tree_is_full - checks if a binary tree is full
+ * is_perfect_tree -  checks if a binary tree is perfect
  *
  * @tree: a pointer to the root node of the tree to check
  * Return: (int)
  */
-int binary_tree_is_full(const binary_tree_t *tree)
+int is_perfect_tree(const binary_tree_t *tree, int depth, int level)
 {
 	if (tree == NULL)
-		return (0);
-
-	if (tree->left == NULL && tree->right == NULL)
 		return (1);
 
-	if (tree->left && tree->right)
-		return (binary_tree_is_full(tree->left) &&
-				binary_tree_is_full(tree->right));
-	return (0);
+	if (tree->left == NULL && tree->right == NULL)
+		return (depth == level + 1);
+
+	if (tree->left == NULL || tree->right == NULL)
+		return (0);
+	return (is_perfect_tree(tree->left, depth, level + 1) &&
+			is_perfect_tree(tree->right, depth, level + 1));
 }
 
 /**
@@ -72,5 +44,5 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 	if (tree == NULL)
 		return (0);
 
-	return (binary_tree_is_full(tree) && binary_tree_balance(tree) == 0);
+	return is_perfect_tree(tree, tree_depth(tree), 0);
 }
