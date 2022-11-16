@@ -38,13 +38,16 @@ void in_order_traversal(const binary_tree_t *tree, linked_list_t **list)
  */
 int binary_tree_is_bst(const binary_tree_t *tree)
 {
-	linked_list_t **list = malloc(sizeof(linked_list_t *) * 1024);
+	linked_list_t **list;
 	linked_list_t *node, *tmp;
 	int is_bst = 1;
 
 	if (tree == NULL)
 		return (0);
 
+	list = malloc(sizeof(linked_list_t *) * 1024);
+	if (list == NULL)
+		return (0);
 	in_order_traversal(tree, list);
 	node = *list;
 	while (node != NULL)
