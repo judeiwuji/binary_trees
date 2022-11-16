@@ -58,4 +58,5 @@ typedef struct binary_queue_s
 	struct binary_tree_s *data;
 	struct binary_queue_s *next;
 } binary_queue_t;
+int binary_tree_is_complete(const binary_tree_t *tree);
 #endif /*  _BINARY_TREES_H_ */
