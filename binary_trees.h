@@ -48,4 +48,14 @@ binary_tree_t *binary_tree_sibling(binary_tree_t *node);
 binary_tree_t *binary_tree_uncle(binary_tree_t *node);
 binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 									 const binary_tree_t *second);
+void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int));
+/**
+ * struct binary_queue_S - Binary Tree Queue
+ * @next: the next node
+ */
+typedef struct binary_queue_s
+{
+	struct binary_tree_s *data;
+	struct binary_queue_s *next;
+} binary_queue_t;
 #endif /*  _BINARY_TREES_H_ */
