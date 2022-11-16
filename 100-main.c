@@ -46,6 +46,6 @@ int main(void)
 
 	launch_test(root, root->right);
 	launch_test(root->left, root);
-	launch_test(root->left, root);
+	launch_test(binary_tree_node(NULL, 98), root->left);
 	return (0);
 }
