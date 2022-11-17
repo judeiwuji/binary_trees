@@ -56,7 +56,7 @@ int binary_tree_is_bst(const binary_tree_t *tree)
 	{
 		if (node->next)
 		{
-			if (node->n > node->next->n)
+			if (node->n >= node->next->n)
 				is_bst = 0;
 		}
 		tmp = node->next;
