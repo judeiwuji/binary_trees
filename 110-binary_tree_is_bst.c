@@ -8,7 +8,7 @@
  */
 void in_order_traversal(const binary_tree_t *tree, linked_list_t **list)
 {
-	linked_list_t *node, *tail;
+	linked_list_t *node;
 
 	if (tree == NULL)
 		return;
@@ -19,14 +19,16 @@ void in_order_traversal(const binary_tree_t *tree, linked_list_t **list)
 		return;
 	node->n = tree->n;
 	node->next = NULL;
-	tail = *list;
+	node->tail = NULL;
 	if (*list == NULL)
+	{
 		*list = node;
+		(*list)->tail = node;
+	}
 	else
 	{
-		while (tail->next != NULL)
-			tail = tail->next;
-		tail->next = node;
+		(*list)->tail->next = node;
+		(*list)->tail = node;
 	}
 	in_order_traversal(tree->right, list);
 }
@@ -45,7 +47,7 @@ int binary_tree_is_bst(const binary_tree_t *tree)
 	if (tree == NULL)
 		return (0);
 
-	list = malloc(sizeof(linked_list_t *) * 1024);
+	list = calloc(sizeof(linked_list_t *), 1024);
 	if (list == NULL)
 		return (0);
 	in_order_traversal(tree, list);
@@ -61,5 +63,6 @@ int binary_tree_is_bst(const binary_tree_t *tree)
 		free(node);
 		node = tmp;
 	}
+	free(list);
 	return (is_bst);
 }

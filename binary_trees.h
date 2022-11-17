@@ -70,5 +70,6 @@ typedef struct linked_list_s
 {
 	int n;
 	struct linked_list_s *next;
+	struct linked_list_s *tail;
 } linked_list_t;
 #endif /*  _BINARY_TREES_H_ */
