@@ -72,4 +72,5 @@ typedef struct linked_list_s
 	struct linked_list_s *next;
 	struct linked_list_s *tail;
 } linked_list_t;
+bst_t *bst_insert(bst_t **tree, int value);
 #endif /*  _BINARY_TREES_H_ */
