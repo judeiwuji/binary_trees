@@ -50,7 +50,8 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 									 const binary_tree_t *second);
 void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int));
 /**
- * struct binary_queue_S - Binary Tree Queue
+ * struct binary_queue_s - Binary Tree Queue
+ * @data: data store
  * @next: the next node
  */
 typedef struct binary_queue_s
@@ -64,7 +65,9 @@ binary_tree_t *binary_tree_rotate_right(binary_tree_t *tree);
 int binary_tree_is_bst(const binary_tree_t *tree);
 /**
  * struct linked_list_s - Linked List
+ * @n: value
  * @next: the next node
+ * @tail: the tail
  */
 typedef struct linked_list_s
 {
